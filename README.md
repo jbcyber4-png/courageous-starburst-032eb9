@@ -11,7 +11,7 @@ A web application for sending branded emails to clients. Each email includes a b
 - "Visit Our Website" call-to-action button in every email
 - Powered by [Resend](https://resend.com) for reliable delivery
 
-## Tech Stack
+## Tech Stack 
 
 - **Framework:** TanStack Start (React + Vite)
 - **Styling:** Tailwind CSS v4
