@@ -2,7 +2,7 @@
 
 A web application for sending branded emails to clients. Each email includes a banner image wrapped in a clickable link that takes recipients directly to your main website.
 
-## Features
+## Features  
 
 - Compose emails with a subject, message body, sender info, and banner image
 - Paste multiple recipient emails (comma-separated or line-by-line)
