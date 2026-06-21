@@ -1,0 +1,138 @@
+@import "tailwindcss" source("../");
+
+:root {
+  --bg-base: #0c0c0e;
+  --bg-surface: #131316;
+  --bg-raised: #1a1a1f;
+  --border: rgba(255,255,255,0.07);
+  --border-hover: rgba(255,255,255,0.14);
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --accent-dim: rgba(217,119,6,0.12);
+  --text-primary: #f0ede8;
+  --text-secondary: #8a8680;
+  --text-muted: #4a4845;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+/* Input base styles */
+.field-input {
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  outline: none;
+}
+
+.field-input::placeholder {
+  color: var(--text-muted);
+}
+
+.field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(217,119,6,0.1);
+  background: #1d1d22;
+}
+
+.field-input.mono {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+/* Animate in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-in {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-in-1 { animation-delay: 0.05s; }
+.animate-in-2 { animation-delay: 0.1s; }
+.animate-in-3 { animation-delay: 0.15s; }
+.animate-in-4 { animation-delay: 0.2s; }
+
+/* Spin */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin { animation: spin 0.8s linear infinite; }
+
+/* Tab underline */
+@keyframes slideIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Pulse dot */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.pulse-dot { animation: pulseDot 1.4s ease-in-out infinite; }
+
+/* Send button shimmer */
+@keyframes btnShimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* Responsive: collapse two-column grid on narrow screens */
+@media (max-width: 720px) {
+  .compose-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Remove number input arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type=number] { -moz-appearance: textfield; }
